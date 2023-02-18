@@ -25,7 +25,6 @@ return (
         </View>
         
         <View style={styles.content}>
-
             <Text style={styles.title}>{item.title2}</Text>
             <Text style={styles.description}>{item.description}</Text>
         </View>

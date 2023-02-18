@@ -5,8 +5,12 @@ import Slides from '../data';
 import SlideItem from './SlideItem';
 import Pagination from './Pagination';
 
-const Slider = () => {
+const Slider = ({navigation}) => {
   const {width, height} = Dimensions.get('screen');
+  const [index, setIndex] = useState(0);
+  const ref = useRef(null);
+  const scrollX = useRef(new Animated.Value(0)).current;
+
   const back = (index) => {
     if (index == 0){
       return
@@ -15,6 +19,7 @@ const Slider = () => {
       return "< Back";
     }
   } 
+
   const next = (index) => {
     if (index == 2){
       return "Lets go >"
@@ -23,19 +28,22 @@ const Slider = () => {
       return "Next >";
     }
   }
-  const [index, setIndex] = useState(0);
-  const ref = useRef(null);
-  const scrollX = useRef(new Animated.Value(0)).current;
+
   const goNextSlide = () => {
     const nextIndex = index +1;
     const offset = nextIndex * width;
     ref?.current?.scrollToOffset({offset});
+    if (nextIndex == 3){
+      navigation.navigate('Login');
+    }
   };
+  
   const goBackSlide = () => {
     const nextIndex = index -1;
     const offset = nextIndex * width;
     ref?.current?.scrollToOffset({offset});
   };
+
   const handleOnScroll = event => {
     Animated.event(
       [
@@ -82,7 +90,7 @@ const Slider = () => {
             <Text style = {styles.text}>{back(index)}</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={index != 2 ? (goNextSlide):(null)}>
+        <TouchableOpacity onPress={(goNextSlide)}>
           <View>
             <Text style = {index == 2 ? (styles.text1):(styles.text)}>{next(index)}</Text>
           </View>

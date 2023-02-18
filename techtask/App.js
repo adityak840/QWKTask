@@ -1,27 +1,31 @@
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import Slider from './src/component/Slider';
-import Video from 'react-native-video';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Login from './src/component/Login';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
-  const onBuffer = (data) => {
-    console.log("buffering ",data)
-  }
-  const onError = (data) => {
-    console.log("error ",data)
-  }
   return (
-    <SafeAreaView>
-      <Slider />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false
+        }}
+      >
+        <Stack.Screen
+          name="Home"
+          component={Slider}
+        />
+        <Stack.Screen name="Login" component={Login} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
   
 };
 
 export default App;
 
-const styles = StyleSheet.create({
-  vid:{
-    height:'100%',
-  },
-});
+const styles = StyleSheet.create();
