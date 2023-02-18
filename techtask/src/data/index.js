@@ -2,8 +2,9 @@ export default [
     {
       id: 1,
       header: 'Qwk',
-      vid: require('../assets/slide1.mp4'),
+      vid: require('../assets/slide1.gif'),
       title: '#One App',
+      titlei:'',
       titled: '',
       title2: '“Convenient \n one-stop-app \n for all of your instant \n needs”',
       description: 'Save Money · Save Time · Get Qwk',
@@ -13,8 +14,9 @@ export default [
     {
       id: 2,
       header: 'Qwk',
-      vid: require('../assets/slide2.mp4'),
+      vid: require('../assets/slide2.gif'),
       title: 'Many Choices \n One Order',
+      titlei: '',
       titled: '',
       title2: '"One order, multiple \n options"',
       description: 'Order from 2 outlets in a \n single order',
@@ -24,8 +26,9 @@ export default [
     {
       id: 3,
       header: '',
-      vid: require('../assets/slide3.mp4'),
-      title: 'QwkFirst',
+      vid: require('../assets/slide3.gif'),
+      title: '',
+      titlei: require('./../assets/QwkFirst.png'),
       titled: 'Zero Cost · Day 1 loyalty program',
       title2: '"Free Membership: \n Enjoy Free Delivery + \n CashBack on Every Order"',
       description: 'All this on top of exciting offers \n and deals',

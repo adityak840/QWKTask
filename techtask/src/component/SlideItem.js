@@ -1,30 +1,45 @@
 import { Image, StyleSheet, Text, View, Dimensions} from 'react-native';
 import React from 'react';
-import {video} from 'react-native-video';
+import Video from 'react-native-video';
   
 const {width, height} = Dimensions.get('screen');
-  
+
 const SlideItem = ({item}) => {
-  
+const onBuffer = (data) => {
+  console.log("buffering ",data)
+}
+const onError = (data) => {
+  console.log("error ",data)
+}
+
 return (
     <View style={styles.container}>
-        <View style={styles.header}>
+         <View style={styles.header}>
             <Text style={styles.titleh}>{item.header}</Text>
         </View>
         <View style={styles.topic}>
           <Text style={styles.titlet} >{item.title}</Text>
+          <Image style={styles.titlei} source={item.titlei} />
           <Text style={styles.descriptiont}>{item.titled}</Text>
         </View>
+        <View style={styles.contVid}>
+          <View>
+            <Image
+              style ={styles.video}
+              source={item.vid}
+            />  
+          </View>
+              
+        </View>
+        
         <View style={styles.content}>
-            <View style={styles.vid}>
 
-            </View>
             <Text style={styles.title}>{item.title2}</Text>
             <Text style={styles.description}>{item.description}</Text>
         </View>
         <View style={styles.end}>
           <Text style={styles.descriptione}>{item.description2}</Text>
-        </View>
+        </View> 
     </View>
     );
 };
@@ -44,18 +59,23 @@ export default SlideItem;
         flex:0.1,
         width:'100%',
     },
-    vid:{
+    contVid:{
+      backgroundColor: '#000000',
+      flex:0.0000001,
       zIndex:5,
-      backgroundColor:'#6024E0',
+    },
+    video:{
+      marginTop:'3%',
+      marginLeft:'25%',
+      marginRight:'25%',
+      borderRadius: 50,
+      borderColor:'#000000',
     },
     topic:{
       flex:0.1,
       width: '100%',
       alignItems:'center',
-    },
-    image: {
-      flex: 0.6,
-      width: '100%',
+      justifyContent:'center',
     },
     content: {
       zIndex:0,
@@ -71,6 +91,9 @@ export default SlideItem;
       borderBottomWidth:6,
       borderColor:'#583FD0',
 
+    },
+    titlei: {
+      marginBottom: '3%',
     },
     titleh: {
       fontFamily: 'Gotham-Bold',
