@@ -1,8 +1,7 @@
-import {StyleSheet, Animated, View, Dimensions} from 'react-native';
+import {StyleSheet, Animated, View, Dimensions, Button} from 'react-native';
 import React from 'react';
 
 const {width} = Dimensions.get('screen');
-
 const Pagination = ({data, scrollX, index}) => {
   return (
     <View style={styles.container}>
@@ -28,13 +27,13 @@ const Pagination = ({data, scrollX, index}) => {
         });
 
         return (
-          <Animated.View
-            key={idx.toString()}
-            style={[
-              styles.dot,
-              {width: dotWidth, backgroundColor},
-            ]}
-          />
+            <Animated.View
+              key={idx.toString()}
+              style={[
+                styles.dot,
+                  {width: dotWidth, backgroundColor},
+                ]}
+            />
         );
       })}
     </View>
@@ -46,7 +45,7 @@ export default Pagination;
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    bottom: 140,
+    bottom: 180,
     flexDirection: 'row',
     width: '100%',
     alignItems: 'center',

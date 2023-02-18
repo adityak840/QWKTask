@@ -1,17 +1,9 @@
-import { Image, StyleSheet, Text, View, Dimensions} from 'react-native';
+import { Image, StyleSheet, Text, View, Dimensions, Button} from 'react-native';
 import React from 'react';
-import Video from 'react-native-video';
   
 const {width, height} = Dimensions.get('screen');
 
 const SlideItem = ({item}) => {
-const onBuffer = (data) => {
-  console.log("buffering ",data)
-}
-const onError = (data) => {
-  console.log("error ",data)
-}
-
 return (
     <View style={styles.container}>
          <View style={styles.header}>
@@ -23,7 +15,7 @@ return (
           <Text style={styles.descriptiont}>{item.titled}</Text>
         </View>
         <View style={styles.contVid}>
-          <View>
+          <View style={styles.cont}>
             <Image
               style ={styles.video}
               source={item.vid}
@@ -60,16 +52,22 @@ export default SlideItem;
         width:'100%',
     },
     contVid:{
-      backgroundColor: '#000000',
-      flex:0.0000001,
+      flex:0.0000000001,
       zIndex:5,
     },
+    cont:{
+      marginLeft:'22%',
+      width:235, 
+      height:230,
+      borderRadius:37,
+      backgroundColor:'#6100e0',
+      borderLeftWidth:6,
+      borderBottomWidth:6,
+      borderColor:'#B7B6FF',
+    },
     video:{
-      marginTop:'3%',
-      marginLeft:'25%',
-      marginRight:'25%',
-      borderRadius: 50,
-      borderColor:'#000000',
+      marginTop:10,
+      marginLeft:15,
     },
     topic:{
       flex:0.1,
@@ -115,16 +113,16 @@ export default SlideItem;
     description: {
       fontFamily: 'Gotham-Medium',
       fontSize: 14,
-      marginVertical: '5%',
+      marginVertical: '4%',
       color: '#000000',
-      marginBottom: 30,
+      marginBottom: 25,
       textAlign: 'center',
     },
     descriptiont: {
       fontFamily: 'Poppins-Bold',
       fontSize: 16,
       color: '#583FD0',
-      marginBottom: 30,
+      marginBottom: 40,
       textAlign: 'center',
     },
     end:{
