@@ -25,7 +25,6 @@ const errorLink = onError(({graphqlErrors,networkErrors})=> {
   }
 })
 
-const Authorization = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJUeXBlIjoiY3VzdG9tZXIiLCJpYXQiOjE2MTY0MDYzNzR9.X2eXiKTxyYuqIuTh_HkvQ7gbluFiKFuaO6n6L7OSQ0c'
 
 const link = from([
   errorLink,
