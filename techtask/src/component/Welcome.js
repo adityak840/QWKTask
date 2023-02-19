@@ -4,14 +4,15 @@ import { View,Text,StyleSheet,TouchableOpacity,Dimensions } from 'react-native'
 const {width, height} = Dimensions.get('screen');
 
 const Welcome = ({navigation}) => {
-    const text = "You're\nLogged In"
+    const text = "You're\nLogged In";
+    const text2 = "Hi {Name}";
   return (
     <View style={styles.container}>
-        <Text style={styles.greeting}>Hi Name</Text>
+        <Text style={styles.greeting}>{text2}</Text>
         <Text style={styles.info}>{text}</Text>
         <View style = {styles.submit}>
                 <TouchableOpacity onPress={() => {
-                    navigation.navigate('Home')
+                    navigation.navigate('Onboarding')
                 }}>
                     <View style = {styles.signout}>
                         <Text style={styles.signoutt}>Sign Out</Text>

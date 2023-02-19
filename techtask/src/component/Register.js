@@ -5,7 +5,61 @@ import DatePicker from 'react-native-date-picker';
 
 const {width, height} = Dimensions.get('screen');
 
-const Register = ({navigation}) => {
+import {
+    ApolloClient,
+    InMemoryCache,
+    ApolloProvider,
+    HttpLink,
+    from,
+  } from "@apollo/client";
+  import {onError} from '@apollo/client/link/error'
+  
+  const errorLink = onError(({graphqlErrors,networkErrors})=> {
+    if (graphqlErrors) {
+      graphqlErrors.map(({message,location,path})=> {
+        alert(`Graphql  error ${message}`);
+      })
+    }
+  })
+  
+  const Authorization = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJUeXBlIjoiY3VzdG9tZXIiLCJpYXQiOjE2MTY0MDYzNzR9.X2eXiKTxyYuqIuTh_HkvQ7gbluFiKFuaO6n6L7OSQ0c'
+  
+  const link = from([
+    errorLink,
+    new HttpLink({uri:"https://dev-api-101.qwk.co.in/graphql",
+    headers:{
+      Authorization: `Bearer ${Authorization}`
+    }
+    })
+  ])
+  
+  const client = new ApolloClient({
+    cache: new InMemoryCache(),
+    link: link
+  })
+
+import { useMutation, gql } from '@apollo/client';
+
+const UPDATE_CUSTOMER_DETAILS_MUTATION = gql`
+  mutation UpdateCustomerDetails($data: CustomerUpdateInput!) {
+    updateCustomerDetails(data: $data) {
+      id
+      email
+      firstName
+      gender
+      phone
+      dateOfBirth
+      addresses {
+        id
+        addressType
+        line1
+      }
+    }
+  }
+`;
+
+const Register = ({route,navigation}) => {
+    const {accessToken} = route.params;
     const [fname,setfName] = useState('');
     const [lname,setlName] = useState('');
     const [date, setDate] = useState(new Date())
@@ -22,8 +76,29 @@ const Register = ({navigation}) => {
         setEmail(email);
     }
     const text = "We recommend that you give us your email to\nensure that your account is safe & secure"
+    const [updateCustomerDetails, { data }] = useMutation(UPDATE_CUSTOMER_DETAILS_MUTATION);
+    const handleUpdate = () => {
+    updateCustomerDetails({
+      variables: {
+        data: {
+          email: email,
+          firstName: fname,
+          lastName: lname,
+          gender: gender,
+          dateOfBirth: date,
+          fcmToken: '',
+          referral: {
+            update: {
+              referralCode: 'refcode'
+            }
+          }
+        }
+      }
+    });
+    };
     return (
-    <View style={styles.container}>
+    <ApolloProvider client={client}>
+        <View style={styles.container}>
         <View>
             <Image
               style ={styles.video}
@@ -122,7 +197,8 @@ const Register = ({navigation}) => {
             </View>
             <View>
                 <TouchableOpacity onPress={() => {
-                    navigation.navigate('Welcome')
+                    navigation.navigate('Home');
+                    handleUpdate()
                 }}>
                     <View style = {styles.signup}>
                         <Text style={styles.signupt}>Sign Up</Text>
@@ -130,7 +206,8 @@ const Register = ({navigation}) => {
                 </TouchableOpacity>
             </View>
         </View>
-    </View>
+        </View>
+    </ApolloProvider>
   )
 }
 

@@ -1,6 +1,15 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useRef,useState } from 'react'
 import { View,Text,StyleSheet,Image,Dimensions,TextInput,TouchableOpacity } from 'react-native'
+import { useMutation, gql } from '@apollo/client';
+
+const GENERATE_OTP = gql`
+  mutation GetOtp($mobileNumber: String!, $hashValue: String) {
+    generateOtp(mobileNumber: $mobileNumber, hashValue: $hashValue) {
+      message
+    }
+  }
+`;
 
 const {width, height} = Dimensions.get('screen');
 const title = "Use your mobile \nnumber to login";
@@ -37,6 +46,21 @@ const Login = () => {
         setNumber(newText);
 
     };
+    const phNumber = Number[0]+Number[1]+Number[2]+Number[4]+Number[5]+Number[6]+Number[8]+Number[9]+Number[10]+Number[11];
+    const [message, setMessage] = useState('');
+    const [generateOtp] = useMutation(GENERATE_OTP);
+    async function handleGetOtp() {
+      try {
+        const { data } = await generateOtp({
+          variables: { mobileNumber: phNumber, hashValue: '#kjglkj' },
+        });
+    
+        setMessage(data.generateOtp.message);
+        console.log(message);
+      } catch (error) {
+        console.error(error);
+     }
+    }
   return (
     <View style={styles.container}>
         <View>
@@ -77,15 +101,16 @@ const Login = () => {
                 <Text style={{
                     color: '#878DBA',
                 }}>We need your phone number for verification purposes</Text>
-                <TouchableOpacity onPress={() => {
-                    navigation.navigate('Verify',{
-                        Number: Number,
-                    });
-                }}>
-                    <View style = {styles.button}>
-                        <Text style={styles.buttont}>Continue</Text>
-                    </View>
-                </TouchableOpacity>
+                        <TouchableOpacity onPress={() => {
+                        navigation.navigate('Verify',{
+                            Number: Number,
+                        });
+                        handleGetOtp()
+                    }}>
+                            <View style = {styles.button}>
+                            <Text style={styles.buttont}>Continue</Text>
+                        </View>
+                    </TouchableOpacity>
             </View>
         </View>
         
@@ -175,7 +200,7 @@ const styles = StyleSheet.create({
         marginTop:10,
         width:'95%',
         backgroundColor:'#583FD0',
-        height: '39%',
+        height: '40%',
         borderRadius:8,
         alignItems:'center',
         justifyContent:'center',

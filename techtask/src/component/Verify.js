@@ -1,15 +1,49 @@
 import React, { useContext, useState,useRef } from 'react'
 import { View,Text,StyleSheet,Image,Dimensions,TextInput, TouchableOpacity } from 'react-native'
-import Number from './Login'
+import { useMutation, gql } from '@apollo/client';
 
 const {width, height} = Dimensions.get('screen');
 const title = "Verify \nyour account";
+
+const LOGIN_CUSTOMER = gql`
+  mutation LoginCustomer($mobile: String!, $otp: String!) {
+    loginCustomer(credentials: { mobile: $mobile, otp: $otp }) {
+      access_token
+      isNew
+      allow
+    }
+  }
+`;
 
 const Verify = ({route,navigation}) => {
     const inputRef = useRef();
     const {Number} = route.params;
     const phNumber = Number[0]+Number[1]+Number[2]+Number[4]+Number[5]+Number[6]+Number[8]+Number[9]+Number[10]+Number[11];
-  return (
+    const [otp,setOtp] = useState('');
+    const storeOtp = (otp) => {
+        setOtp(otp);
+    };
+    
+    const [accessToken, setAccessToken] = useState('');
+    const [isNew, setIsNew] = useState(false);
+    const [allow, setAllow] = useState(false);
+    const [loginCustomer] = useMutation(LOGIN_CUSTOMER);
+
+    async function handleLogin() {
+        try {
+        const { data } = await loginCustomer({
+            variables: { mobile: phNumber, otp: otp },
+        });
+
+        setAccessToken(data.loginCustomer.access_token);
+        setIsNew(data.loginCustomer.isNew);
+        setAllow(data.loginCustomer.allow);
+        } catch (error) {
+            null
+        }
+    }
+    
+    return (
     <View style={styles.container}>
         <View>
             <Image
@@ -39,27 +73,46 @@ const Verify = ({route,navigation}) => {
                     }}>Enter the OTP</Text>
                     <View style = {styles.inputContainer}>
                         <TextInput
+                            value={otp}
                             inputMode='tel'
                             keyboardType='number-pad'
                             style={styles.input}
                             ref={inputRef}
+                            onChangeText={(otp)=>{storeOtp(otp)}}
                             onLayout={()=> inputRef.current.focus()}
                             alignItems='center'
                             textAlignVertical='center'
                             width='90%'
                             color= '#1E2661'
+                            maxLength={6}
                         />
                     </View>
                 </View>
                 <View style = {styles.submit}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=> {
+                        navigation.goBack();
+                    }}>
                         <Text style={{
                         color:'#878DBA',
                         fontSize:16,
                     }}>Send again in 10s</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=> {
-                        navigation.navigate('Register')
+                        handleLogin();
+                        console.log(allow);
+                        console.log(isNew);
+                        {
+                            if(allow){
+                                if (!isNew){
+                                    navigation.navigate('Home');
+                                }
+                                else{
+                                    navigation.navigate('Register',{
+                                        accessToken:accessToken,
+                                    });
+                                }
+                            }   
+                        };
                     }}>
                     <View style = {styles.button}>
                         <Text style={styles.buttont}>Verify</Text>
