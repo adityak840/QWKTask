@@ -100,10 +100,6 @@ const styles = StyleSheet.create({
         width,
         height,
     },
-    carousel:{
-        flex:0.0000001,
-        zIndex:0,
-    },
     video:{
         width:'100%',
         height:'75%',

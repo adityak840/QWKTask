@@ -58,7 +58,9 @@ const Verify = ({route,navigation}) => {
                         fontSize:16,
                     }}>Send again in 10s</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity >
+                    <TouchableOpacity onPress={()=> {
+                        navigation.navigate('Register')
+                    }}>
                     <View style = {styles.button}>
                         <Text style={styles.buttont}>Verify</Text>
                     </View>
@@ -76,10 +78,6 @@ const styles = StyleSheet.create({
     container: {
         width,
         height,
-    },
-    carousel:{
-        flex:0.0000001,
-        zIndex:0,
     },
     video:{
         width:'100%',
