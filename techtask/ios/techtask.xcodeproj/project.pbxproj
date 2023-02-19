@@ -18,6 +18,9 @@
 		3AB98BC2A9FA46DA9AB61E04 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00FB46013CA9480B818DEA6F /* Poppins-Bold.ttf */; };
 		6D53860D7D41465E94012689 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23320CDD7991451CBBCBED04 /* Poppins-Regular.ttf */; };
 		D879135577D84BB7B31601B5 /* Gotham-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FF9F1A8E40554B5CAF03996B /* Gotham-Medium.otf */; };
+		AB19F3AF27144E7F8DB1D8F3 /* Gotham-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1EBFE572B3444E18D48CDD5 /* Gotham-Black.otf */; };
+		5E7D276A8B1E466B97265D5F /* Inter-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C881F0B16F3A4D91B5C44BED /* Inter-ExtraBold.ttf */; };
+		07871ABE72AF4786BD5B4910 /* metropolis.regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 771D6B55ED914868B71C5AD2 /* metropolis.regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +55,9 @@
 		00FB46013CA9480B818DEA6F /* Poppins-Bold.ttf */ = {isa = PBXFileReference; name = "Poppins-Bold.ttf"; path = "../src/assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		23320CDD7991451CBBCBED04 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; name = "Poppins-Regular.ttf"; path = "../src/assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		FF9F1A8E40554B5CAF03996B /* Gotham-Medium.otf */ = {isa = PBXFileReference; name = "Gotham-Medium.otf"; path = "../src/assets/fonts/Gotham-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F1EBFE572B3444E18D48CDD5 /* Gotham-Black.otf */ = {isa = PBXFileReference; name = "Gotham-Black.otf"; path = "../src/assets/fonts/Gotham-Black.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C881F0B16F3A4D91B5C44BED /* Inter-ExtraBold.ttf */ = {isa = PBXFileReference; name = "Inter-ExtraBold.ttf"; path = "../src/assets/fonts/Inter-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		771D6B55ED914868B71C5AD2 /* metropolis.regular.otf */ = {isa = PBXFileReference; name = "metropolis.regular.otf"; path = "../src/assets/fonts/metropolis.regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +170,9 @@
 				00FB46013CA9480B818DEA6F /* Poppins-Bold.ttf */,
 				23320CDD7991451CBBCBED04 /* Poppins-Regular.ttf */,
 				FF9F1A8E40554B5CAF03996B /* Gotham-Medium.otf */,
+				F1EBFE572B3444E18D48CDD5 /* Gotham-Black.otf */,
+				C881F0B16F3A4D91B5C44BED /* Inter-ExtraBold.ttf */,
+				771D6B55ED914868B71C5AD2 /* metropolis.regular.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -269,6 +278,9 @@
 				3AB98BC2A9FA46DA9AB61E04 /* Poppins-Bold.ttf in Resources */,
 				6D53860D7D41465E94012689 /* Poppins-Regular.ttf in Resources */,
 				D879135577D84BB7B31601B5 /* Gotham-Medium.otf in Resources */,
+				AB19F3AF27144E7F8DB1D8F3 /* Gotham-Black.otf in Resources */,
+				5E7D276A8B1E466B97265D5F /* Inter-ExtraBold.ttf in Resources */,
+				07871ABE72AF4786BD5B4910 /* metropolis.regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -4,6 +4,7 @@ import Slider from './src/component/Slider';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Login from './src/component/Login';
+import Verify from './src/component/Verify';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,7 @@ const App = () => {
           component={Slider}
         />
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Verify" component={Verify} />
       </Stack.Navigator>
     </NavigationContainer>
   );

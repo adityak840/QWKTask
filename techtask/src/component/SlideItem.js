@@ -105,7 +105,7 @@ export default SlideItem;
     },
     title: {
       textAlign:'center',
-      fontFamily: 'Gotham-Bold',
+      fontFamily: 'Gotham-Black',
       fontSize: 18,
       color: '#583FD0',
     },
