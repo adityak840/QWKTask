@@ -99,17 +99,17 @@ const Verify = ({route,navigation}) => {
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=> {
                         handleLogin();
-                        console.log(allow);
-                        console.log(isNew);
                         {
                             if(allow){
                                 if (!isNew){
-                                    navigation.navigate('Home');
+                                    navigation.navigate('Home',{
+                                        name:'{Name}',
+                                    });
                                 }
                                 else{
                                     navigation.navigate('Register',{
                                         accessToken:accessToken,
-                                    });
+                                    }); 
                                 }
                             }   
                         };

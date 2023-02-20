@@ -56,7 +56,6 @@ const Login = () => {
         });
     
         setMessage(data.generateOtp.message);
-        console.log(message);
       } catch (error) {
         console.error(error);
      }

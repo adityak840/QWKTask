@@ -29,9 +29,6 @@ const errorLink = onError(({graphqlErrors,networkErrors})=> {
 const link = from([
   errorLink,
   new HttpLink({uri:"https://dev-api-101.qwk.co.in/graphql",
-  // headers:{
-  //   Authorization: `Bearer ${Authorization}`
-  // }
   })
 ])
 

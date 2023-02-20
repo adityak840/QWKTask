@@ -7,7 +7,7 @@ const {width, height} = Dimensions.get('screen');
 
 import { useMutation, gql } from '@apollo/client';
 
-const UPDATE_CUSTOMER_DETAILS_MUTATION = gql`
+const UPDATE_CUSTOMER_DETAILS = gql`
   mutation UpdateCustomerDetails($data: CustomerUpdateInput!) {
     updateCustomerDetails(data: $data) {
       id
@@ -43,26 +43,36 @@ const Register = ({route,navigation}) => {
         setEmail(email);
     }
     const text = "We recommend that you give us your email to\nensure that your account is safe & secure"
-    const [updateCustomerDetails, { data }] = useMutation(UPDATE_CUSTOMER_DETAILS_MUTATION);
-    const handleUpdate = () => {
-    updateCustomerDetails({
-      variables: {
-        data: {
-          email: email,
-          firstName: fname,
-          lastName: lname,
-          gender: gender,
-          dateOfBirth: date,
-          fcmToken: '',
-          referral: {
-            update: {
-              referralCode: 'refcode'
+    const [updateCustomerDetails, { data }] = useMutation(
+        UPDATE_CUSTOMER_DETAILS,
+        {
+          variables: {
+            data: {
+              email: email,
+              firstName: fname,
+              lastName: lname,
+              gender: gender,
+              dateOfBirth: date,
+              fcmToken: '',
+              referral: { update: { referralCode: 'refcode' } }
+            }
+          },
+          context: {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+              'Content-Type': 'application/json'
             }
           }
         }
-      }
-    });
-    };
+      );
+    
+      async function handleUpdate() {
+        try {
+          await updateCustomerDetails();
+        } catch (err) {
+          console.error(err);
+        }
+      };
     return (
     <View style={styles.container}>
         <View>
@@ -163,8 +173,10 @@ const Register = ({route,navigation}) => {
             </View>
             <View>
                 <TouchableOpacity onPress={() => {
-                    navigation.navigate('Home');
-                    handleUpdate()
+                    handleUpdate();
+                    navigation.navigate('Home',{
+                        name:fname,
+                    });
                 }}>
                     <View style = {styles.signup}>
                         <Text style={styles.signupt}>Sign Up</Text>

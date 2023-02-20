@@ -3,12 +3,12 @@ import { View,Text,StyleSheet,TouchableOpacity,Dimensions } from 'react-native'
 
 const {width, height} = Dimensions.get('screen');
 
-const Welcome = ({navigation}) => {
+const Welcome = ({route,navigation}) => {
     const text = "You're\nLogged In";
-    const text2 = "Hi {Name}";
+    const {name} = route.params;
   return (
     <View style={styles.container}>
-        <Text style={styles.greeting}>{text2}</Text>
+        <Text style={styles.greeting}>Hi {name}</Text>
         <Text style={styles.info}>{text}</Text>
         <View style = {styles.submit}>
                 <TouchableOpacity onPress={() => {
